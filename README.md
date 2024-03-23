@@ -4,7 +4,7 @@ https://getpocket.com/developer/
 
 Example usage:
 
-
+```
 package main
 
 import (
@@ -39,4 +39,4 @@ func main()  {
 		log.Fatalf("failed to add item: %s", err)
 	}
 }
-
+```
