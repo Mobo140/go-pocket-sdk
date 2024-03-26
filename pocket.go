@@ -60,7 +60,7 @@ type (
 	}
 )
 
-func (i addInput) validate() error {
+func (i AddInput) validate() error {
 	if i.URL == "" {
 		return errors.New("required URL is empty")
 	}
@@ -71,7 +71,7 @@ func (i addInput) validate() error {
 	return nil
 }
 
-func (i addInput) generateRequest(consumerKey string) addRequest {
+func (i AddInput) generateRequest(consumerKey string) addRequest {
 	return addRequest{
 		URL:         i.URL,
 		Tags:        strings.Join(i.Tags, ","),
@@ -166,7 +166,7 @@ func (c *Client) GetAuthorizationURL(requestToken, redirectUrl string) (string, 
 	return fmt.Sprintf(authorizeUrl, requestToken, redirectUrl), nil
 }
 
-func (c *Client) Authorize(ctx context.Context, requestToken string) (*authorizeResponse, error) {
+func (c *Client) Authorize(ctx context.Context, requestToken string) (*AuthorizeResponse, error) {
 	if requestToken == "" {
 		return nil, errors.New("empty request token")
 	}
@@ -186,7 +186,7 @@ func (c *Client) Authorize(ctx context.Context, requestToken string) (*authorize
 		return nil, errors.New("empty access token in API response")
 	}
 
-	return &authorizeResponse{
+	return &AuthorizeResponse{
 		Access_token: accessToken,
 		Username:     username,
 	}, nil
@@ -194,7 +194,7 @@ func (c *Client) Authorize(ctx context.Context, requestToken string) (*authorize
 }
 
 // Add creates new item in Pocket list
-func (c *Client) Add(ctx context.Context, input addInput) error {
+func (c *Client) Add(ctx context.Context, input AddInput) error {
 	if err := input.validate(); err != nil {
 		return err
 	}
