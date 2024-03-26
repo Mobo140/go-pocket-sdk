@@ -39,7 +39,7 @@ type (
 		Code        string `json:"code"`
 	}
 
-	authorizeResponse struct {
+	AuthorizeResponse struct {
 		Access_token string `json:"access_token"`
 		Username     string `json:"username"`
 	}
@@ -52,7 +52,7 @@ type (
 		ConsumerKey string `json:"consumer_key"`
 	}
 	//addInput hols data necessary to create new item in Pocket list
-	addInput struct {
+	AddInput struct {
 		URL         string
 		Title       string
 		Tags        []string

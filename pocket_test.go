@@ -170,7 +170,7 @@ func TestClient_Authorize(t *testing.T) {
 		expectedStatusCode   int
 		expectedResponse     string
 		expectedErrorMessage string
-		want                 *authorizeResponse
+		want                 *AuthorizeResponse
 		wantErr              bool
 	}{
 		{
@@ -181,7 +181,7 @@ func TestClient_Authorize(t *testing.T) {
 			},
 			expectedResponse:   "access_token=qwe-rty-123&username=testuser",
 			expectedStatusCode: 200,
-			want: &authorizeResponse{
+			want: &AuthorizeResponse{
 				Access_token: "qwe-rty-123",
 				Username:     "testuser",
 			},
@@ -234,7 +234,7 @@ func TestClient_Authorize(t *testing.T) {
 func TestClient_Add(t *testing.T) {
 	type args struct {
 		ctx   context.Context
-		input addInput
+		input AddInput
 	}
 	tests := []struct {
 		name               string
@@ -246,7 +246,7 @@ func TestClient_Add(t *testing.T) {
 			name: "OK",
 			args: args{
 				ctx: context.Background(),
-				input: addInput{
+				input: AddInput{
 					URL:         "http://example.link",
 					AccessToken: "token",
 				},
@@ -257,7 +257,7 @@ func TestClient_Add(t *testing.T) {
 			name: "Empty url",
 			args: args{
 				ctx: context.Background(),
-				input: addInput{
+				input: AddInput{
 					URL:         "",
 					AccessToken: "token",
 				},
@@ -268,7 +268,7 @@ func TestClient_Add(t *testing.T) {
 			name: "Empty token",
 			args: args{
 				ctx: context.Background(),
-				input: addInput{
+				input: AddInput{
 					URL: "http://example.link",
 				},
 			},
@@ -278,7 +278,7 @@ func TestClient_Add(t *testing.T) {
 			name: "With Title",
 			args: args{
 				ctx: context.Background(),
-				input: addInput{
+				input: AddInput{
 					URL:         "http://example.link",
 					AccessToken: "token",
 					Title:       "example",
@@ -290,7 +290,7 @@ func TestClient_Add(t *testing.T) {
 			name: "With Tags",
 			args: args{
 				ctx: context.Background(),
-				input: addInput{
+				input: AddInput{
 					URL:         "http://example.link",
 					AccessToken: "token",
 					Title:       "example",
@@ -303,7 +303,7 @@ func TestClient_Add(t *testing.T) {
 			name: "Non-2XX-Response",
 			args: args{
 				ctx: context.Background(),
-				input: addInput{
+				input: AddInput{
 					URL:         "http://example.link",
 					AccessToken: "token",
 					Title:       "example",
